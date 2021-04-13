@@ -16,6 +16,7 @@ Per Keep a Changelog there are 6 main categories of changes:
 #### Table of Contents
 
 - [Unreleased](#unreleased)
+- [v0.1.5](#v015)
 - [v0.1.4](#v014)
 - [v0.1.3](#v013)
 - [v0.1.2](#v012)
@@ -24,6 +25,10 @@ Per Keep a Changelog there are 6 main categories of changes:
 - [Diffs](#diffs)
 
 ## Unreleased
+
+## v0.1.5
+
+Released 2021-04-13
 
 #### Added
 - Changelog checking on PR
@@ -76,7 +81,8 @@ Released 2021-04-13
 
 ## Diffs
 
-- [Unreleased](https://github.com/cwfitzgerald/generate-test2/compare/v0.1.4...HEAD)
+- [Unreleased](https://github.com/cwfitzgerald/generate-test2/compare/v0.1.5...HEAD)
+- [v0.1.5](https://github.com/cwfitzgerald/generate-test2/compare/v0.1.4...v0.1.5)
 - [v0.1.4](https://github.com/cwfitzgerald/generate-test2/compare/v0.1.3...v0.1.4)
 - [v0.1.3](https://github.com/cwfitzgerald/generate-test2/compare/v0.1.2...v0.1.3)
 - [v0.1.2](https://github.com/cwfitzgerald/generate-test2/compare/v0.1.1...v0.1.2)
