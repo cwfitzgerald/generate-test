@@ -192,11 +192,11 @@ jobs:
       
       - name: install cargo-readme
         run: |
-          cargo install-update cargo-readme
+          cargo install-update -i cargo-readme
       
       - name: install cargo-release
         run: |
-          cargo install-update cargo-release
+          cargo install-update -i cargo-release
 
       - name: release to crates.io
         run: |
