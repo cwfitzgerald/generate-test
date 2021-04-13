@@ -1,0 +1,116 @@
+name: Build
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build:
+    timeout-minutes: 5
+
+    strategy:
+      matrix:
+        rust_version: [stable, "1.49"]
+        include:
+          
+          # wasm
+          - name: 'wasm'
+            os: 'ubuntu-latest'
+            target: 'wasm32-unknown-unknown'
+          
+
+          # native
+          - name: 'native linux'
+            os: 'ubuntu-latest'
+            target: 'x86_64-unknown-linux-gnu'
+          - name: 'native mac'
+            os: 'macos-latest'
+            target: 'x86_64-apple-darwin'
+          - name: 'native windows'
+            os: 'windows-latest'
+            target: 'x86_64-pc-windows-msvc'
+      fail-fast: false
+    
+    runs-on: ${{ matrix.os }}
+    name: ${{ matrix.name }}
+
+    steps:
+      - name: checkout repo
+        uses: actions/checkout@v2
+
+      - name: load cache
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+            target
+          key: ${{ matrix.os }}-${{ matrix.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+          restore-keys: |
+            ${{ matrix.os }}-${{ matrix.os }}-cargo-
+
+      - name: install rust
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: ${{ matrix.rust_version }}
+          target: ${{ matrix.target }}
+          profile: minimal
+          components: clippy
+          default: true
+          
+      - name: check
+        uses: actions-rs/cargo@v1
+        with:
+          command: clippy
+          args: -D warnings --target ${{ matrix.target }}
+          
+      - name: build
+        uses: actions-rs/cargo@v1
+        with:
+          command: build
+          args: --target ${{ matrix.target }}
+          
+      - name: test
+        uses: actions-rs/cargo@v1
+        with:
+          command: test
+        if: ${{ matrix.name != "wasm" }}
+          
+      - name: doc
+        run: |
+          RUSTDOCFLAGS="-D warnings" cargo doc --no-deps
+        shell: bash
+
+  cargo-fmt:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout repo
+        uses: actions/checkout@v2
+
+      - name: install rust
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: nightly
+          profile: minimal
+          components: rustfmt
+          default: true
+
+      - name: check format
+        uses: actions-rs/cargo@v1
+        with:
+          command: fmt
+          args: -- --check
+
+  cargo-deny:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout repo
+        uses: actions/checkout@v2
+
+      - name: check denies
+        uses: EmbarkStudios/cargo-deny-action@v1
+        with:
+          log-level: warn
+          command: check
+          arguments: --all-features
+
