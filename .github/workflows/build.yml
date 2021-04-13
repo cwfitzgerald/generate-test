@@ -166,6 +166,10 @@ jobs:
       - name: install cargo-release
         run: |
           cargo install cargo-release
+      
+      - name: install cargo-readme
+        run: |
+          cargo install cargo-readme
 
       - name: release to crates.io
         run: |
