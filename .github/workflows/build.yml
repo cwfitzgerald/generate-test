@@ -211,6 +211,8 @@ jobs:
         id: notes
         run: |
           NOTES=$(python -c 'import re; print(re.search("## v\\d+.\\d+.\\d+\n\nReleased \\d+-\\d+-\\d+\n\n((?:[\n]|.)*?)(?=## [vD])", open("CHANGELOG.md", "r").read()).group(1).strip())')
+          NOTES="${NOTES//'%'/'%25'}"
+          NOTES="${NOTES//$'\n'/'%0A'}"
           echo "::set-output name=notes::$NOTES"
 
       - name: release to github

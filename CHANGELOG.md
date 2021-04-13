@@ -14,6 +14,13 @@ and this project adheres to cargo's version of [Semantic Versioning](https://sem
 
 ## Unreleased
 
+#### Added
+- More Crazy Stuff
+
+#### Updated
+- Fixed Release Notes Extraction
+- Other Crazy Stuff Three
+
 ## v0.1.3
 
 Released 2021-04-13
