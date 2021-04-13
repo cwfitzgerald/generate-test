@@ -15,6 +15,9 @@ and this project adheres to cargo's version of [Semantic Versioning](https://sem
 
 ## Unreleased
 
+#### Added
+- Changelog checking on PR
+
 ## v0.1.4
 
 Released 2021-04-13
