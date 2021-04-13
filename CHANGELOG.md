@@ -6,12 +6,17 @@ The format is loosely based on [Keep a Changelog](https://keepachangelog.com/en/
 and this project adheres to cargo's version of [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 - [Unreleased](#unreleased)
+- [v0.1.3](#v013)
 - [v0.1.2](#v012)
 - [v0.1.1](#v011)
 - [v0.1.0](#v010)
 - [Diffs](#diffs)
 
 ## Unreleased
+
+## v0.1.3
+
+Released 2021-04-13
 
 #### Added
 - More Crazy Stuff
@@ -46,7 +51,8 @@ Released 2021-04-13
 
 ## Diffs
 
-- [Unreleased](https://github.com/cwfitzgerald/generate-test2/compare/v0.1.2...HEAD)
+- [Unreleased](https://github.com/cwfitzgerald/generate-test2/compare/v0.1.3...HEAD)
+- [v0.1.3](https://github.com/cwfitzgerald/generate-test2/compare/v0.1.2...v0.1.3)
 - [v0.1.2](https://github.com/cwfitzgerald/generate-test2/compare/v0.1.1...v0.1.2)
 - [v0.1.1](https://github.com/cwfitzgerald/generate-test2/compare/v0.1.0...v0.1.1)
 
