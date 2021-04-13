@@ -1,9 +1,9 @@
-# generate-test
+# generate-test2
 
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/BVE-Reborn/generate-test/Build)
-[![Crates.io](https://img.shields.io/crates/v/generate-test)](https://crates.io/crates/generate-test)
-[![Documentation](https://docs.rs/generate-test/badge.svg)](https://docs.rs/generate-test)
-![License](https://img.shields.io/crates/l/generate-test)
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/cwfitzgerald/generate-test2/Build)
+[![Crates.io](https://img.shields.io/crates/v/generate-test2)](https://crates.io/crates/generate-test2)
+[![Documentation](https://docs.rs/generate-test2/badge.svg)](https://docs.rs/generate-test2)
+![License](https://img.shields.io/crates/l/generate-test2)
 
 
 {{readme}}

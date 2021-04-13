@@ -6,31 +6,57 @@ on:
 
 jobs:
   build:
-    timeout-minutes: 5
+    timeout-minutes: 4
 
     strategy:
       matrix:
+        rust_version: [stable, "1.47"]
         include:
-          # wasm
-          - name: 'wasm'
+          
+          # wasm stable
+          - name: 'stable wasm'
             os: 'ubuntu-latest'
             target: 'wasm32-unknown-unknown'
             rust_version: 'stable'
           
 
-          # native
-          - name: 'native linux'
+          # native stable
+          - name: 'stable linux'
             os: 'ubuntu-latest'
             target: 'x86_64-unknown-linux-gnu'
             rust_version: 'stable'
-          - name: 'native mac'
+          - name: 'stable mac'
             os: 'macos-latest'
             target: 'x86_64-apple-darwin'
             rust_version: 'stable'
-          - name: 'native windows'
+          - name: 'stable windows'
             os: 'windows-latest'
             target: 'x86_64-pc-windows-msvc'
             rust_version: 'stable'
+
+          
+          
+          # wasm MSRV
+          - name: '1.47 wasm'
+            os: 'ubuntu-latest'
+            target: 'wasm32-unknown-unknown'
+            rust_version: '1.47'
+          
+
+          # native MSRV
+          - name: '1.47 linux'
+            os: 'ubuntu-latest'
+            target: 'x86_64-unknown-linux-gnu'
+            rust_version: '1.47'
+          - name: '1.47 mac'
+            os: 'macos-latest'
+            target: 'x86_64-apple-darwin'
+            rust_version: '1.47'
+          - name: '1.47 windows'
+            os: 'windows-latest'
+            target: 'x86_64-pc-windows-msvc'
+            rust_version: '1.47'
+          
       fail-fast: false
     
     runs-on: ${{ matrix.os }}
@@ -47,9 +73,9 @@ jobs:
             ~/.cargo/registry
             ~/.cargo/git
             target
-          key: ${{ matrix.os }}-${{ matrix.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+          key: ${{ matrix.os }}-${{ matrix.target }}-cargo-${{ hashFiles('**/Cargo.lock') }}
           restore-keys: |
-            ${{ matrix.os }}-${{ matrix.os }}-cargo-
+            ${{ matrix.os }}-${{ matrix.target }}-cargo-
 
       - name: install rust
         uses: actions-rs/toolchain@v1
@@ -80,7 +106,7 @@ jobs:
           
       - name: doc
         run: |
-          RUSTDOCFLAGS="-D warnings" cargo doc --no-deps
+          RUSTDOCFLAGS="-D warnings" cargo doc --no-deps --target ${{ matrix.target }}
         shell: bash
 
   cargo-fmt:
