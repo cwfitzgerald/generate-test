@@ -210,7 +210,7 @@ jobs:
       - name: generate release notes
         id: notes
         run: |
-          NOTES=$(grep -zoP '## v\d+.\d+.\d+(\n|.)*(?=## )' CHANGELOG.md | sed '1,4d')
+          NOTES=$(python -c 'import re; print(re.search("## v\\d+.\\d+.\\d+\n\nReleased \\d+-\\d+-\\d+\n\n((?:[\n]|.)*?)(?=## [vD])", open("CHANGELOG.md", "r").read()).group(1).strip())')
           echo "::set-output name=notes::$NOTES"
 
       - name: release to github
